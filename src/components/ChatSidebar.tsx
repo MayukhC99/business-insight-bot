@@ -8,7 +8,10 @@ import {
   Trash2,
   PanelLeftClose,
   PanelLeft,
+  Sun,
+  Moon,
 } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 export type Conversation = {
   id: string;
@@ -134,21 +137,37 @@ export function ChatSidebar({
       </div>
 
       {/* Footer */}
-      {!collapsed && (
-        <div className="border-t border-border p-3">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
-              <span className="text-xs font-semibold text-primary">BA</span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-sidebar-foreground truncate">
-                Business Assistant
-              </p>
-              <p className="text-[10px] text-muted-foreground">AI-Powered</p>
-            </div>
-          </div>
+      <div className="border-t border-border p-3">
+        <div className="flex items-center gap-2">
+          {!collapsed && (
+            <>
+              <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
+                <span className="text-xs font-semibold text-primary">BA</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-medium text-sidebar-foreground truncate">
+                  Business Assistant
+                </p>
+                <p className="text-[10px] text-muted-foreground">AI-Powered</p>
+              </div>
+            </>
+          )}
+          <ThemeToggle />
         </div>
-      )}
+      </div>
     </motion.aside>
+  );
+}
+
+function ThemeToggle() {
+  const { theme, toggle } = useTheme();
+  return (
+    <button
+      onClick={toggle}
+      className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+      title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+    >
+      {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+    </button>
   );
 }
