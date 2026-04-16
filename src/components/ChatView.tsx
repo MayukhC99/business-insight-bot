@@ -185,7 +185,7 @@ export function ChatView() {
       setIsTyping(true);
 
       setTimeout(() => {
-        const response = getResponse(content);
+        const response = getResponse(content, selectedMode);
         const aiMsg: MessageType = {
           id: crypto.randomUUID(),
           role: "assistant",
