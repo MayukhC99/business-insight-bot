@@ -540,9 +540,9 @@ export function getResponse(
     const count = (salesMessageCounts.get(key) || 0) + 1;
     salesMessageCounts.set(key, count);
     if (count === 1) {
-      return { content: SALES_RESPONSE_1, category: "suggestion" };
+      return { content: SALES_RESPONSE_2, category: "suggestion" };
     }
-    return { content: SALES_RESPONSE_2, category: "suggestion" };
+    return { content: SALES_RESPONSE_1, category: "suggestion" };
   }
   if (mode === "support") {
     return { content: SUPPORT_RESPONSE, category: "opportunity" };
