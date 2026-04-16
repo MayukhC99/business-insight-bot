@@ -10,6 +10,30 @@ interface ChatInputProps {
   mode: Mode | null;
 }
 
+const modeStyles: Record<string, { border: string; focusBorder: string; glow: string; text: string; bg: string }> = {
+  product_manager: {
+    border: "border-analytics/50",
+    focusBorder: "focus-within:border-analytics",
+    glow: "focus-within:glow-analytics",
+    text: "text-analytics",
+    bg: "bg-analytics",
+  },
+  sales: {
+    border: "border-suggestion/50",
+    focusBorder: "focus-within:border-suggestion",
+    glow: "focus-within:glow-suggestion",
+    text: "text-suggestion",
+    bg: "bg-suggestion",
+  },
+  support: {
+    border: "border-opportunity/50",
+    focusBorder: "focus-within:border-opportunity",
+    glow: "focus-within:glow-opportunity",
+    text: "text-opportunity",
+    bg: "bg-opportunity",
+  },
+};
+
 export function ChatInput({ onSend, disabled, mode }: ChatInputProps) {
   const [value, setValue] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -36,21 +60,21 @@ export function ChatInput({ onSend, disabled, mode }: ChatInputProps) {
     }
   };
 
-  const modeAccent = mode ? modeConfig[mode].accentVar : null;
-  const borderClass = mode
-    ? `border-${modeAccent}/50 focus-within:border-${modeAccent} focus-within:glow-${modeAccent}`
+  const styles = mode ? modeStyles[mode] : null;
+  const borderClass = styles
+    ? `${styles.border} ${styles.focusBorder} ${styles.glow}`
     : "border-border focus-within:border-primary/50 focus-within:glow-primary";
 
   return (
     <div className="border-t border-border bg-background/80 backdrop-blur-sm p-4">
       <div className="mx-auto max-w-3xl">
-        {mode && (
+        {mode && styles && (
           <div className="flex items-center gap-1.5 mb-2 ml-1">
             {(() => {
               const Icon = modeConfig[mode].icon;
-              return <Icon size={12} className={`text-${modeAccent}`} />;
+              return <Icon size={12} className={styles.text} />;
             })()}
-            <span className={`text-[11px] font-medium text-${modeAccent}`}>
+            <span className={`text-[11px] font-medium ${styles.text}`}>
               Mode: {modeConfig[mode].title}
             </span>
           </div>
@@ -78,8 +102,8 @@ export function ChatInput({ onSend, disabled, mode }: ChatInputProps) {
             onClick={handleSubmit}
             disabled={!value.trim() || disabled || !mode}
             className={`mb-1 flex h-9 w-9 items-center justify-center rounded-xl transition-colors disabled:opacity-30 disabled:cursor-not-allowed ${
-              mode
-                ? `bg-${modeAccent} text-white hover:opacity-90`
+              styles
+                ? `${styles.bg} text-white hover:opacity-90`
                 : "bg-primary text-primary-foreground hover:bg-primary/90"
             }`}
           >
