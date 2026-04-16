@@ -1,34 +1,24 @@
 import { motion } from "framer-motion";
-import { BarChart3, Lightbulb, Rocket, Database } from "lucide-react";
+import { Briefcase, TrendingUp, HeadsetIcon } from "lucide-react";
 
-const features = [
+const modes = [
   {
-    icon: BarChart3,
-    title: "Analytics",
-    description: "Real-time metrics and trend analysis",
+    icon: Briefcase,
+    title: "Product Manager",
+    description: "Track metrics, analyze user behavior & prioritize features",
     colorClass: "text-analytics bg-analytics/10 border-analytics/20",
-    glowClass: "glow-analytics",
   },
   {
-    icon: Lightbulb,
-    title: "Suggestions",
-    description: "Actionable recommendations for growth",
+    icon: TrendingUp,
+    title: "Sales",
+    description: "Revenue insights, pipeline analysis & growth opportunities",
     colorClass: "text-suggestion bg-suggestion/10 border-suggestion/20",
-    glowClass: "glow-suggestion",
   },
   {
-    icon: Rocket,
-    title: "Opportunities",
-    description: "Discover untapped segments & potential",
+    icon: HeadsetIcon,
+    title: "Support",
+    description: "Customer sentiment, ticket trends & resolution insights",
     colorClass: "text-opportunity bg-opportunity/10 border-opportunity/20",
-    glowClass: "glow-opportunity",
-  },
-  {
-    icon: Database,
-    title: "Unified Data",
-    description: "Connect databases, social & internal tools",
-    colorClass: "text-primary bg-primary/10 border-primary/20",
-    glowClass: "glow-primary",
   },
 ];
 
