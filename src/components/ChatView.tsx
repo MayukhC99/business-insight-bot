@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { ChatMessage, TypingIndicator, type MessageType } from "./ChatMessage";
 import { ChatInput } from "./ChatInput";
-import { EmptyState } from "./EmptyState";
+import { EmptyState, type Mode } from "./EmptyState";
 
 // Simulated AI responses
 const mockResponses: Record<string, { content: string; category?: MessageType["category"] }> = {
@@ -47,6 +47,8 @@ function getResponse(input: string): { content: string; category?: MessageType["
 export function ChatView() {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [selectedMode, setSelectedMode] = useState<Mode | null>(null);
+  const [modeLocked, setModeLocked] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = useCallback(() => {
@@ -61,6 +63,9 @@ export function ChatView() {
 
   const handleSend = useCallback(
     (content: string) => {
+      if (!selectedMode) return;
+      if (!modeLocked) setModeLocked(true);
+
       const userMsg: MessageType = {
         id: crypto.randomUUID(),
         role: "user",
@@ -70,7 +75,6 @@ export function ChatView() {
       setMessages((prev) => [...prev, userMsg]);
       setIsTyping(true);
 
-      // Simulate AI response
       setTimeout(() => {
         const response = getResponse(content);
         const aiMsg: MessageType = {
@@ -84,15 +88,18 @@ export function ChatView() {
         setIsTyping(false);
       }, 1200 + Math.random() * 800);
     },
-    []
+    [selectedMode, modeLocked]
   );
 
   return (
     <div className="flex flex-1 flex-col h-full overflow-hidden">
-      {/* Messages Area */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto">
         {messages.length === 0 ? (
-          <EmptyState onPrompt={handleSend} />
+          <EmptyState
+            onPrompt={handleSend}
+            selectedMode={selectedMode}
+            onSelectMode={setSelectedMode}
+          />
         ) : (
           <div className="mx-auto max-w-3xl py-4">
             {messages.map((msg) => (
@@ -102,9 +109,7 @@ export function ChatView() {
           </div>
         )}
       </div>
-
-      {/* Input */}
-      <ChatInput onSend={handleSend} disabled={isTyping} />
+      <ChatInput onSend={handleSend} disabled={isTyping} mode={selectedMode} />
     </div>
   );
 }
