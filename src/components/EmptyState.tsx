@@ -1,34 +1,24 @@
 import { motion } from "framer-motion";
-import { BarChart3, Lightbulb, Rocket, Database } from "lucide-react";
+import { Briefcase, TrendingUp, HeadsetIcon } from "lucide-react";
 
-const features = [
+const modes = [
   {
-    icon: BarChart3,
-    title: "Analytics",
-    description: "Real-time metrics and trend analysis",
+    icon: Briefcase,
+    title: "Product Manager",
+    description: "Track metrics, analyze user behavior & prioritize features",
     colorClass: "text-analytics bg-analytics/10 border-analytics/20",
-    glowClass: "glow-analytics",
   },
   {
-    icon: Lightbulb,
-    title: "Suggestions",
-    description: "Actionable recommendations for growth",
+    icon: TrendingUp,
+    title: "Sales",
+    description: "Revenue insights, pipeline analysis & growth opportunities",
     colorClass: "text-suggestion bg-suggestion/10 border-suggestion/20",
-    glowClass: "glow-suggestion",
   },
   {
-    icon: Rocket,
-    title: "Opportunities",
-    description: "Discover untapped segments & potential",
+    icon: HeadsetIcon,
+    title: "Support",
+    description: "Customer sentiment, ticket trends & resolution insights",
     colorClass: "text-opportunity bg-opportunity/10 border-opportunity/20",
-    glowClass: "glow-opportunity",
-  },
-  {
-    icon: Database,
-    title: "Unified Data",
-    description: "Connect databases, social & internal tools",
-    colorClass: "text-primary bg-primary/10 border-primary/20",
-    glowClass: "glow-primary",
   },
 ];
 
@@ -54,7 +44,7 @@ export function EmptyState({ onPrompt }: EmptyStateProps) {
       >
         {/* Logo mark */}
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20 animate-pulse-glow">
-          <BarChart3 size={28} className="text-primary" />
+          <Briefcase size={28} className="text-primary" />
         </div>
 
         <h1 className="text-2xl font-bold text-foreground tracking-tight font-display">
@@ -65,19 +55,20 @@ export function EmptyState({ onPrompt }: EmptyStateProps) {
           all through a simple conversation.
         </p>
 
-        {/* Feature Cards */}
-        <div className="mt-8 grid grid-cols-2 gap-3">
-          {features.map((f, i) => (
+        {/* Mode Cards */}
+        <p className="mt-8 text-xs font-medium text-muted-foreground mb-3">Choose your mode</p>
+        <div className="grid grid-cols-3 gap-3">
+          {modes.map((m, i) => (
             <motion.div
-              key={f.title}
+              key={m.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 + i * 0.1, duration: 0.4 }}
-              className={`rounded-xl border p-3 text-left ${f.colorClass}`}
+              className={`rounded-xl border p-3 text-left cursor-pointer hover:scale-[1.03] transition-transform ${m.colorClass}`}
             >
-              <f.icon size={18} className="mb-1.5" />
-              <p className="text-xs font-semibold">{f.title}</p>
-              <p className="text-[11px] opacity-70">{f.description}</p>
+              <m.icon size={18} className="mb-1.5" />
+              <p className="text-xs font-semibold">{m.title}</p>
+              <p className="text-[11px] opacity-70">{m.description}</p>
             </motion.div>
           ))}
         </div>
