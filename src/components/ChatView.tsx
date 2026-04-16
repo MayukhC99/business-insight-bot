@@ -210,7 +210,7 @@ export function ChatView() {
             onSelectMode={setSelectedMode}
           />
         ) : (
-          <div className="mx-auto max-w-3xl py-4">
+          <div className="mx-auto max-w-4xl py-4">
             {messages.map((msg) => (
               <ChatMessage key={msg.id} message={msg} />
             ))}

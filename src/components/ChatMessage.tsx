@@ -58,7 +58,7 @@ export function ChatMessage({ message }: { message: MessageType }) {
       </div>
 
       {/* Content */}
-      <div className={`flex-1 max-w-[75%] ${isUser ? "text-right" : ""}`}>
+      <div className={`flex-1 ${isUser ? "max-w-[75%] text-right" : "max-w-full"}`}>
         {cat && (
           <div className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-medium mb-2 ${cat.className}`}>
             <cat.icon size={12} />
@@ -72,7 +72,20 @@ export function ChatMessage({ message }: { message: MessageType }) {
               : "bg-card text-card-foreground border border-border rounded-tl-sm"
           }`}
         >
-          <div className="prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_th]:px-2 [&_th]:py-1 [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_td]:border [&_th]:border-border [&_td]:border-border [&_blockquote]:border-l-primary/40 [&_code]:text-[12px] [&_pre]:bg-muted [&_pre]:rounded-lg [&_pre]:p-3">
+          <div className="prose prose-sm dark:prose-invert max-w-none
+            [&_h1]:text-xl [&_h1]:font-bold [&_h1]:mt-6 [&_h1]:mb-3 [&_h1]:pb-2 [&_h1]:border-b [&_h1]:border-border
+            [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mt-5 [&_h2]:mb-2 [&_h2]:pb-1.5 [&_h2]:border-b [&_h2]:border-border/50
+            [&_h3]:text-base [&_h3]:font-semibold [&_h3]:mt-4 [&_h3]:mb-1.5
+            [&_hr]:my-4 [&_hr]:border-border/40
+            [&_table]:w-full [&_table]:text-xs [&_table]:my-3 [&_table]:border-collapse
+            [&_th]:px-3 [&_th]:py-2 [&_th]:text-left [&_th]:font-semibold [&_th]:bg-muted/50 [&_th]:border [&_th]:border-border
+            [&_td]:px-3 [&_td]:py-2 [&_td]:border [&_td]:border-border
+            [&_blockquote]:border-l-2 [&_blockquote]:border-l-primary/40 [&_blockquote]:bg-muted/30 [&_blockquote]:rounded-r-lg [&_blockquote]:px-4 [&_blockquote]:py-2 [&_blockquote]:my-3 [&_blockquote]:text-[13px] [&_blockquote]:italic
+            [&_code]:text-[12px] [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded
+            [&_pre]:bg-muted [&_pre]:rounded-lg [&_pre]:p-3 [&_pre]:my-3 [&_pre]:overflow-x-auto [&_pre_code]:bg-transparent [&_pre_code]:p-0
+            [&_ul]:my-2 [&_ol]:my-2 [&_li]:my-0.5
+            [&_strong]:font-semibold
+            [&_p]:my-2">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
           </div>
         </div>
