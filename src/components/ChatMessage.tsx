@@ -6,6 +6,8 @@ import {
   Bot,
   User,
 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export type MessageType = {
   id: string;
@@ -70,7 +72,9 @@ export function ChatMessage({ message }: { message: MessageType }) {
               : "bg-card text-card-foreground border border-border rounded-tl-sm"
           }`}
         >
-          <p className="whitespace-pre-wrap">{message.content}</p>
+          <div className="prose prose-sm dark:prose-invert max-w-none [&_table]:w-full [&_table]:text-xs [&_th]:px-2 [&_th]:py-1 [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_td]:border [&_th]:border-border [&_td]:border-border [&_blockquote]:border-l-primary/40 [&_code]:text-[12px] [&_pre]:bg-muted [&_pre]:rounded-lg [&_pre]:p-3">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
+          </div>
         </div>
         <p className="mt-1 text-[10px] text-muted-foreground">
           {message.timestamp.toLocaleTimeString([], {
