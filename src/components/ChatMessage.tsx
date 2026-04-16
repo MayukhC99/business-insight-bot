@@ -44,6 +44,7 @@ export function ChatMessage({ message }: { message: MessageType }) {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
+      data-role={message.role}
       className={`flex gap-3 px-4 py-3 ${isUser ? "flex-row-reverse" : ""}`}
     >
       {/* Avatar */}

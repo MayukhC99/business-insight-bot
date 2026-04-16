@@ -74,7 +74,7 @@ function Index() {
         onToggle={() => setSidebarCollapsed((p) => !p)}
       />
       <main className="flex flex-1 flex-col overflow-hidden">
-        <ChatView />
+        <ChatView key={activeId || "empty"} chatId={activeId || undefined} />
       </main>
     </div>
   );
