@@ -6,6 +6,8 @@ import {
   Bot,
   User,
 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export type MessageType = {
   id: string;
