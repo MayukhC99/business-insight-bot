@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Briefcase, TrendingUp, HeadsetIcon, Check } from "lucide-react";
+import { Briefcase, TrendingUp, HeadsetIcon, Check, Bot } from "lucide-react";
 
 export type Mode = "product_manager" | "sales" | "support";
 
@@ -69,11 +69,11 @@ export function EmptyState({ onPrompt, selectedMode, onSelectMode }: EmptyStateP
         className="text-center max-w-xl"
       >
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20 animate-pulse-glow">
-          <Briefcase size={28} className="text-primary" />
+          <Bot size={28} className="text-primary" />
         </div>
 
         <h1 className="text-2xl font-bold text-foreground tracking-tight font-display">
-          Business Assistant
+          Hawk IQ
         </h1>
         <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
           Turn scattered data into insights, suggestions, and opportunities —

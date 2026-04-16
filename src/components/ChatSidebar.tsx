@@ -146,7 +146,7 @@ export function ChatSidebar({
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-medium text-sidebar-foreground truncate">
-                  Business Assistant
+                  HawkIQ
                 </p>
                 <p className="text-[10px] text-muted-foreground">AI-Powered</p>
               </div>

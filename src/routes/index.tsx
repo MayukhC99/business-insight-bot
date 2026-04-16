@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Business Assistant — AI-Powered Insights" },
+      { title: "HawkIQ — AI-Powered Insights" },
       {
         name: "description",
         content:
@@ -21,21 +21,9 @@ function Index() {
   const [conversations, setConversations] = useState<Conversation[]>([
     {
       id: "1",
-      title: "Q3 Sales Analysis",
+      title: "Current Conversation",
       timestamp: new Date(),
-      type: "analytics",
-    },
-    {
-      id: "2",
-      title: "Growth Opportunities",
-      timestamp: new Date(),
-      type: "opportunity",
-    },
-    {
-      id: "3",
-      title: "Product Improvements",
-      timestamp: new Date(),
-      type: "suggestion",
+      type: "general",
     },
   ]);
   const [activeId, setActiveId] = useState<string | null>("1");
@@ -44,7 +32,7 @@ function Index() {
   const handleNew = useCallback(() => {
     const newConv: Conversation = {
       id: crypto.randomUUID(),
-      title: "New Conversation",
+      title: "Current Conversation",
       timestamp: new Date(),
       type: "general",
     };
